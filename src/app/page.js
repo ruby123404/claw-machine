@@ -2,14 +2,18 @@
 import Image from "next/image";
 import { Canvas } from "@react-three/fiber";
 import { RoundedBox, CameraControls, Environment, useGLTF, ContactShadows} from "@react-three/drei";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
+
+
+
+
 
 export default function Home() {
 
   const isHidden = true;
+  const clawModel = useGLTF(`/claw.glb`);
 
-  const clawModel = useGLTF("claw.glb");
-
+  
 
 
   return (
@@ -44,12 +48,12 @@ export default function Home() {
 
 
         <Environment
-          background={true} // can be true, false or "only" (which only sets the background) (default: false)
-          backgroundBlurriness={0.5} // optional blur factor between 0 and 1 (default: 0, only works with three 0.146 and up)
-          backgroundIntensity={1} // optional intensity factor (default: 1, only works with three 0.163 and up)
-          environmentIntensity={1} // optional intensity factor (default: 1, only works with three 0.163 and up)
+          background={true}
+          backgroundBlurriness={0.5}
+          backgroundIntensity={1}
+          environmentIntensity={1}
           preset={'city'}
-        />
+        /> 
 
         <ContactShadows opacity={1} scale={10} blur={10} far={10} resolution={256} color="#DDDDDD" />
 
