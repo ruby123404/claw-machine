@@ -11,9 +11,8 @@ import { Suspense, useEffect } from "react";
 export default function Home() {
 
   const isHidden = true;
-  const clawModel = useGLTF(`/claw.glb`);
+  const clawModel = useGLTF(`claw.glb`);
 
-  
 
 
   return (

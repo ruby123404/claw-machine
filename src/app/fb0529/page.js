@@ -67,7 +67,7 @@ export default function FB0529() {
 
 
       const accountRef = ref(database, "/accounts/" + uid);
-      console.log(accountRef);
+      console.log(accountRef); 
       
       if(!accountRef){
         //沒有此帳號，建立一個
@@ -85,8 +85,6 @@ export default function FB0529() {
     });
 
   }
-
-
 
   return (
     <>
