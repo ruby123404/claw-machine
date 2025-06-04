@@ -9,7 +9,7 @@ import gsap from 'gsap';
 import Swal from 'sweetalert2'
 
 
-function ClawModel({clawPos, isLowering}) {
+function ClawModel({clawPos, isLowering, hasPrize}) {
   const clawModel = useGLTF(`claw.glb`);
   const clawModelRef = useRef();
 
@@ -33,8 +33,7 @@ function ClawModel({clawPos, isLowering}) {
         }
 
         if (child.name === 'bear') {
-          // invisible
-          child.visible = false;
+          child.visible = hasPrize;
         }
       });
     }
@@ -52,7 +51,7 @@ function ClawModel({clawPos, isLowering}) {
 }
 
 
-function Camera({setClawPos, boxRef, clawPos, isLowering, setIsLowering}) {
+function Camera({setClawPos, boxRef, clawPos, isLowering, setIsLowering, hasPrize, setHasPrize}) {
   const cameraRef = useRef();
   
   //  [注意] useFrame and useKeyboardControls 都需要放在 Canvas 的子组件中
@@ -101,6 +100,7 @@ function Camera({setClawPos, boxRef, clawPos, isLowering, setIsLowering}) {
         }
 
         if(jump){
+          setHasPrize(false);
           console.log('jump');
           setIsLowering(true);
           
@@ -114,16 +114,18 @@ function Camera({setClawPos, boxRef, clawPos, isLowering, setIsLowering}) {
 
           // 隨機變數判斷是否中獎
           const random = Math.random();
-          console.log(random);
+          const isWin = random < 0.5;
+          
+          // Has Prize 在這裡不會被更新，給同學練習
+          setHasPrize(isWin);
+          
           //gsap convet to timeline
-          gsap.timeline().to(clawPos, { y: 2, duration: 2})
-            .to(clawPos, { y: 2.7, duration: 1})
-            // .to(clawPos, { x: -0.4, duration: 2})
-            // .to(clawPos, { z: 0.2, duration: 2})
+           gsap.timeline().to(clawPos, { y: 2, duration: 2})
+            .to(clawPos, { y: 2.7, duration: 3})
             .then(() => {
 
               setIsLowering(false);
-              if(random < 0.5){
+              if(isWin){
                 console.log("中獎");
                 Swal.fire({
                   title: '中獎了',
@@ -166,6 +168,7 @@ export default function Home() {
 
   const [clawPos, setClawPos] = useState({x: -0.4, y: 2.7, z: 0.2});
   const [isLowering, setIsLowering] = useState(false);
+  const [hasPrize, setHasPrize] = useState(false);
 
 
   return (
@@ -203,7 +206,7 @@ export default function Home() {
 
 
           <Suspense fallback={null}>
-            <ClawModel clawPos={clawPos} isLowering={isLowering} />
+            <ClawModel clawPos={clawPos} isLowering={isLowering} hasPrize={hasPrize} />
           </Suspense>
 
 
@@ -217,7 +220,9 @@ export default function Home() {
 
           <ContactShadows opacity={1} scale={10} blur={10} far={10} resolution={256} color="#DDDDDD" />
 
-          <Camera boxRef={boxRef} clawPos={clawPos} setClawPos={setClawPos} isLowering={isLowering} setIsLowering={setIsLowering} />
+          <Camera boxRef={boxRef} clawPos={clawPos} setClawPos={setClawPos} isLowering={isLowering} setIsLowering={setIsLowering}
+            hasPrize={hasPrize} setHasPrize={setHasPrize}
+          />
           <CameraControls enablePan={false} enableZoom={false} />
           <axesHelper args={[10]} />
 
