@@ -17,7 +17,9 @@ export default function FBAuth() {
     measurementId: "G-9S4KKT964F"
   };
 
-  const app = initializeApp(firebaseConfig);
+  //判斷 app 是否已經初始化過，有初始化過就使用該 app
+  const app = initializeApp(firebaseConfig, "fb-auth");
+  
 
   const provider = new GoogleAuthProvider();
   // provider.addScope('https://www.googleapis.com/auth/contacts.readonly');

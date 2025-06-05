@@ -19,7 +19,7 @@ export default function FB0529() {
   };
 
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
+  const app = initializeApp(firebaseConfig, "fb0529");
   const database = getDatabase(app);
   const dbRef = ref(database, "/");
 

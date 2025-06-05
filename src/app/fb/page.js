@@ -6,9 +6,14 @@ import { useState, useEffect } from "react";
 export default function FB() {
 
   const firebaseConfig = {
-    // ...
-    // The value of `databaseURL` depends on the location of the database
-    databaseURL: "https://fir-demo-cc753-default-rtdb.firebaseio.com/",
+    apiKey: "AIzaSyDM4kNv7gTyRHL7vX_ZdBN20L-NY-nVg7I",
+    authDomain: "fir-demo-cc753.firebaseapp.com",
+    databaseURL: "https://fir-demo-cc753-default-rtdb.firebaseio.com",
+    projectId: "fir-demo-cc753",
+    storageBucket: "fir-demo-cc753.firebasestorage.app",
+    messagingSenderId: "547407373138",
+    appId: "1:547407373138:web:14b40e20e4b7fc773e108b",
+    measurementId: "G-9S4KKT964F"
   };
 
   const app = initializeApp(firebaseConfig);
