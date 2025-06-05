@@ -55,12 +55,12 @@ function Camera({setClawPos, boxRef, clawPos, isLowering, setIsLowering, hasPriz
   const cameraRef = useRef();
   
   //  [注意] useFrame and useKeyboardControls 都需要放在 Canvas 的子组件中
+  
   useFrame(() => {
     if (cameraRef.current) {
       cameraRef.current.lookAt(0, 1, 0);
     }
   });
-
 
   const [, getKeys] = useKeyboardControls();
 
