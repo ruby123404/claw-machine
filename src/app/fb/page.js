@@ -1,4 +1,7 @@
+// Realtime Database 即時資料庫範例程式碼
+
 "use client"
+
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue, set, push } from "firebase/database";
 import { useState, useEffect } from "react";
@@ -6,9 +9,9 @@ import { useState, useEffect } from "react";
 export default function FB() {
 
   const firebaseConfig = {
-    apiKey: "AIzaSyDM4kNv7gTyRHL7vX_ZdBN20L-NY-nVg7I",
+    apiKey: "改成你自己的",
     authDomain: "fir-demo-cc753.firebaseapp.com",
-    databaseURL: "https://fir-demo-cc753-default-rtdb.firebaseio.com",
+    databaseURL: "改成你自己的",
     projectId: "fir-demo-cc753",
     storageBucket: "fir-demo-cc753.firebasestorage.app",
     messagingSenderId: "547407373138",
@@ -24,9 +27,11 @@ export default function FB() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    // ref 是指向你要上傳到的路徑，也可以想像成資料夾
     const dbRef = ref(database, "/");
   
     onValue(dbRef, (snapshot) => {
+      // 偵測資料變動，會隨時取得最新資料
       const data = snapshot.val();
       setData(data);
       setLoading(false);
@@ -39,6 +44,7 @@ export default function FB() {
   }, []);
 
   const uploadData = () => {
+    // 將資料 push 到對應的 list 內
     const dbRef = ref(database, "/");
     push(dbRef, {
       name: "John",

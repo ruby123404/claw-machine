@@ -1,3 +1,6 @@
+// google 登入範例程式碼
+// 別忘記到 auth 頁面新增服務提供商
+
 "use client"
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
@@ -7,9 +10,9 @@ import { useState, useEffect } from "react";
 export default function FBAuth() {
 
   const firebaseConfig = {
-    apiKey: "AIzaSyDM4kNv7gTyRHL7vX_ZdBN20L-NY-nVg7I",
+    apiKey: "改成你自己的",
     authDomain: "fir-demo-cc753.firebaseapp.com",
-    databaseURL: "https://fir-demo-cc753-default-rtdb.firebaseio.com",
+    databaseURL: "改成你自己的",
     projectId: "fir-demo-cc753",
     storageBucket: "fir-demo-cc753.firebasestorage.app",
     messagingSenderId: "547407373138",
