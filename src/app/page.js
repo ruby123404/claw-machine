@@ -177,7 +177,7 @@ export default function Home() {
 
   return (
     <div className="w-full h-screen bg-white flex justify-center items-center">
-      <div className="w-[400px] h-screen rounded-lg bg-white">
+      <div className="w-[500px] h-screen rounded-lg border-3 border-[#E2A0A8] justify-center items-center bg-[url('/background-full.png')] bg-cover">
         <KeyboardControls
           map={[
             { name: "forward", keys: ["ArrowUp", "w", "W"] },
@@ -225,13 +225,7 @@ export default function Home() {
          
         </Canvas>
       </KeyboardControls>
-
-      <div className="absolute top-120 left-250 flex text-black border-6 border-[#E2A0A8] rounded-full p-5">
-        按住鍵盤w、s、a、d 控制方向 <br />
-        空格鍵確定位置
-      </div>
-
-      </div>
+     </div>
     </div>
   );
 }
