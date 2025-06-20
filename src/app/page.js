@@ -72,8 +72,8 @@ function Camera({ setClawPos, boxRef, clawPos, isLowering, setIsLowering, hasPri
   useFrame((state) => {
     const { forward, backward, left, right, jump } = getKeys();
     const speed = 0.01;
-    const limitX = 0.4;
-    const limitZ = 0.4;
+    const limitX = 0.5;
+    const limitZ = 0.5;
 
     if (boxRef.current) {
       if (!isLowering) {
@@ -219,12 +219,18 @@ export default function Home() {
               hasPrize={hasPrize} setHasPrize={setHasPrize}
             />
 
-
+           
 
 
          
         </Canvas>
       </KeyboardControls>
+
+      <div className="absolute top-120 left-250 flex text-black border-6 border-[#E2A0A8] rounded-full p-5">
+        按住鍵盤w、s、a、d 控制方向 <br />
+        空格鍵確定位置
+      </div>
+
       </div>
     </div>
   );
